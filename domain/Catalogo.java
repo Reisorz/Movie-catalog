@@ -38,7 +38,8 @@ public class Catalogo {
                 break;
 
             case 4:
-                
+
+                borrarPelicula();
                 break;
 
             case 5:
@@ -96,6 +97,10 @@ public class Catalogo {
         }
 
         elegirOpcion();
+    }
+
+    public void borrarPelicula() {
+        
     }
 
 
