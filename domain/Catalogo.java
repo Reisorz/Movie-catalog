@@ -39,7 +39,7 @@ public class Catalogo {
 
             case 4:
 
-                borrarPelicula();1
+                borrarPelicula();
                 break;
 
             case 5:
@@ -81,11 +81,11 @@ public class Catalogo {
     public void buscarPelicula() {
         Scanner scan = new Scanner(System.in);
         System.out.println("Escribe el nombre exacto de la película que buscas:");
-        String peliculaBuscada = scan.nextLine();
+        String peliculaBorrar = scan.nextLine();
         int i = 0;
         boolean isEncontrada = false;
         for (Pelicula pelicula : arrayCatalogo) {
-            if (pelicula.getNombre().toLowerCase().equals(peliculaBuscada.toLowerCase())) {
+            if (pelicula.getNombre().toLowerCase().equals(peliculaBorrar.toLowerCase())) {
                 System.out.println(i + "." + " " + pelicula.toString());
                 isEncontrada = true;
                 i++;
@@ -100,7 +100,25 @@ public class Catalogo {
     }
 
     public void borrarPelicula() {
-        
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Escribe el nombre exacto de la película que desea borrar:");
+        String peliculaBorrar = scan.nextLine();
+        int i = 0;
+        boolean isEncontrada = false;
+        for (Pelicula pelicula : arrayCatalogo) {
+            if (pelicula.getNombre().equals(peliculaBorrar)) {
+                arrayCatalogo.remove(i);
+                System.out.println("La película '" + pelicula.getNombre() + "' ha sido borrada.");
+                isEncontrada = true;
+                i++;
+            }
+        }
+
+        if (isEncontrada == false) {
+            System.out.println("\nNo se ha encontrado la película que deseas borrar.");
+        }
+
+        elegirOpcion();
     }
 
 
