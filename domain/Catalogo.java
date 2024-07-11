@@ -39,7 +39,7 @@ public class Catalogo {
 
             case 4:
 
-                borrarPelicula();
+                borrarPelicula();1
                 break;
 
             case 5:
