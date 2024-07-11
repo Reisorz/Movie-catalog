@@ -5,7 +5,7 @@ import java.util.Scanner;
 
 public class Catalogo {
 
-    ArrayList <Object> arrayCatalogo;
+    ArrayList <Pelicula> arrayCatalogo;
 
     public Catalogo () {
         arrayCatalogo = new ArrayList<>();
@@ -28,17 +28,13 @@ public class Catalogo {
                 break;
             
             case 2:
-                Pelicula peliculaAñadir = new Pelicula();
-                System.out.println("Escribe el nombre de la película:");
-                peliculaAñadir.setNombre(scan.nextLine());
-                System.out.println("Escribe el año de la película:");
-                peliculaAñadir.setYear(Integer.parseInt(scan.nextLine()));
-                añadirPelicula(peliculaAñadir);
-                System.out.println("Película añadida.");
+                
+                añadirPelicula();
                 break;
 
             case 3:
-                
+
+                buscarPelicula();
                 break;
 
             case 4:
@@ -57,25 +53,51 @@ public class Catalogo {
 
                 break;
         }
-
-
-        
-
-    }
-
-    public void añadirPelicula (Pelicula pelicula) {
-        arrayCatalogo.add(pelicula);
-        elegirOpcion();
     }
 
     public void listarPeliculas () {
         int i = 0;
-        for (Object object : arrayCatalogo) {
+        for (Pelicula pelicula : arrayCatalogo) {
 
-            System.out.println(i + "." + " " + object.toString());
+            System.out.println(i + "." + " " + pelicula.toString());
             i++;
         }
         elegirOpcion();
     }
+
+    public void añadirPelicula () {
+        Scanner scan = new Scanner(System.in);
+        Pelicula peliculaAñadir = new Pelicula();
+        System.out.println("Escribe el nombre de la película a añadir:");
+        peliculaAñadir.setNombre(scan.nextLine());
+        System.out.println("Escribe el año de la película a añadir:");
+        peliculaAñadir.setYear(Integer.parseInt(scan.nextLine()));
+        arrayCatalogo.add(peliculaAñadir);
+        System.out.println("Película añadida.");
+        elegirOpcion();
+    }
+
+    public void buscarPelicula() {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Escribe el nombre exacto de la película que buscas:");
+        String peliculaBuscada = scan.nextLine();
+        int i = 0;
+        boolean isEncontrada = false;
+        for (Pelicula pelicula : arrayCatalogo) {
+            if (pelicula.getNombre().toLowerCase().equals(peliculaBuscada.toLowerCase())) {
+                System.out.println(i + "." + " " + pelicula.toString());
+                isEncontrada = true;
+                i++;
+            }
+        }
+
+        if (isEncontrada == false) {
+            System.out.println("\nNo se ha encontrado la película que buscas.");
+        }
+
+        elegirOpcion();
+    }
+
+
 
 }
