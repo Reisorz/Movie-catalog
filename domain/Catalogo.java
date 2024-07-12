@@ -49,10 +49,13 @@ public class Catalogo {
 
             case 6:
                 
+                System.out.println("Fin del programa.");
                 break;
         
             default:
 
+                System.out.println("Inserta una opción válidad.");
+                elegirOpcion();
                 break;
         }
     }
@@ -127,9 +130,27 @@ public class Catalogo {
     }
 
     public void modificarPelicula() {
-        
-    }
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Escribe el nombre exacto de la película que desea modificar:");
+        String peliculaModificar = scan.nextLine();
 
+        int i = 0;
+        for (Pelicula pelicula : arrayCatalogo) {
+            if (pelicula.getNombre().equals(peliculaModificar)) {
+                System.out.println("Esta es la película a modificar: " + i + "." + " " + pelicula.toString());
+                System.out.println("Escribe el nuevo nombre de la película:");
+                pelicula.setNombre(scan.nextLine());
+                System.out.println("Escribe el nuevo año de la película:");
+                pelicula.setYear(Integer.parseInt(scan.nextLine()));
+                System.out.println("Estos son los nuevos datos de la película:");
+                System.out.println(i + "." + " " + pelicula.toString());
+                break;
+            }
+        i++;
+        }
+
+        elegirOpcion();
+    }
 
 
 }
