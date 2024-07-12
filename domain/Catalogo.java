@@ -92,8 +92,9 @@ public class Catalogo {
             if (pelicula.getNombre().toLowerCase().equals(peliculaBorrar.toLowerCase())) {
                 System.out.println(i + "." + " " + pelicula.toString());
                 isEncontrada = true;
-                i++;
+                
             }
+        i++;
         }
 
         if (isEncontrada == false) {
