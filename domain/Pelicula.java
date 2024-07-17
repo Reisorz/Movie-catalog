@@ -1,6 +1,7 @@
 package domain;
 
 public class Pelicula {
+    private int idPelicula;
     private String nombre;
     private int year;
 
