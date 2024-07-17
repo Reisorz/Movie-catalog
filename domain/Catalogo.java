@@ -44,14 +44,18 @@ public class Catalogo {
 
             case 5:
                 
+                modificarPelicula();
                 break;
 
             case 6:
                 
+                System.out.println("Fin del programa.");
                 break;
         
             default:
 
+                System.out.println("Inserta una opción válidad.");
+                elegirOpcion();
                 break;
         }
     }
@@ -88,8 +92,9 @@ public class Catalogo {
             if (pelicula.getNombre().toLowerCase().equals(peliculaBorrar.toLowerCase())) {
                 System.out.println(i + "." + " " + pelicula.toString());
                 isEncontrada = true;
-                i++;
+                
             }
+        i++;
         }
 
         if (isEncontrada == false) {
@@ -103,24 +108,50 @@ public class Catalogo {
         Scanner scan = new Scanner(System.in);
         System.out.println("Escribe el nombre exacto de la película que desea borrar:");
         String peliculaBorrar = scan.nextLine();
-        int i = 0;
         boolean isEncontrada = false;
-        for (Pelicula pelicula : arrayCatalogo) {
-            if (pelicula.getNombre().equals(peliculaBorrar)) {
-                arrayCatalogo.remove(i);
-                System.out.println("La película '" + pelicula.getNombre() + "' ha sido borrada.");
+        int remove = 0;
+
+        for (int j = 0; j < arrayCatalogo.size(); j++) {
+            if (arrayCatalogo.get(j).getNombre().equals(peliculaBorrar)) {
+                remove = j;
                 isEncontrada = true;
-                i++;
-            }
+                j++;
+            } 
         }
 
         if (isEncontrada == false) {
             System.out.println("\nNo se ha encontrado la película que deseas borrar.");
+        } else if (isEncontrada == true) {
+            System.out.println("La película '" + arrayCatalogo.get(remove).getNombre() + "' ha sido borrada.");
+            arrayCatalogo.remove(remove);
+            
         }
 
         elegirOpcion();
     }
 
+    public void modificarPelicula() {
+        Scanner scan = new Scanner(System.in);
+        System.out.println("Escribe el nombre exacto de la película que desea modificar:");
+        String peliculaModificar = scan.nextLine();
+
+        int i = 0;
+        for (Pelicula pelicula : arrayCatalogo) {
+            if (pelicula.getNombre().equals(peliculaModificar)) {
+                System.out.println("Esta es la película a modificar: " + i + "." + " " + pelicula.toString());
+                System.out.println("Escribe el nuevo nombre de la película:");
+                pelicula.setNombre(scan.nextLine());
+                System.out.println("Escribe el nuevo año de la película:");
+                pelicula.setYear(Integer.parseInt(scan.nextLine()));
+                System.out.println("Estos son los nuevos datos de la película:");
+                System.out.println(i + "." + " " + pelicula.toString());
+                break;
+            }
+        i++;
+        }
+
+        elegirOpcion();
+    }
 
 
 }
